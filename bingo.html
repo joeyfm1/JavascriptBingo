@@ -1,0 +1,237 @@
+<html>
+<head>
+    <link rel="shortcut icon" href="https://d1eipm3vz40hy0.cloudfront.net/images/logos/zendesk-favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+div     {
+            text-align: center;
+        }
+
+        .bigNumberDisplay {
+            font-size: 10em;
+        }
+
+        .numbersTable {
+            font-size: 3em;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table, tr, td {
+            border-collapse: collapse;
+            border: solid 1px #999;
+        }
+
+        td {
+            min-width: 200px;
+            color: #fff;
+            text-align: center;
+            font-size: 60px;
+            font-weight: bolder;
+        }
+
+        td.selected {
+            color: #f00;
+            background-color: #A3B86C;
+            border: solid 1px #000000;
+        }
+        #btnGenerate{
+            width: 270px;  
+            height: 60px;
+            color: red;
+            background: url(https://d1eipm3vz40hy0.cloudfront.net/images/p-brand/z-logo.svg) no-repeat;
+            background-position: center;
+            border: none;
+            outline: none;
+            font-size: 30px;
+            font-weight: bolder;
+            text-align: right;
+            white-space: normal;
+
+        }
+
+</style>
+    <script>
+$(function() {
+    var bingo = {
+        selectedNumbers: [],
+        generateRandom: function() {
+            var min = 1;
+            var max = 89;
+            var random = Math.floor(Math.random() * (max - min + 1)) + min;
+            return random;
+        },
+        generateNextRandom: function() {
+            if (bingo.selectedNumbers.length > 88) {
+                alert("Game over!");
+                return 0;
+            }
+            var random = bingo.generateRandom();
+            while ($.inArray(random, bingo.selectedNumbers) > -1) {
+                random = bingo.generateRandom();
+            }
+            bingo.selectedNumbers.push(random);
+            return random;
+        }
+    };
+    $('td').each(function() {
+        var concatClass = this.cellIndex + "" + this.parentNode.rowIndex;
+        var numberString = parseInt(concatClass, 10).toString();
+        $(this).addClass("cell" + numberString).text(numberString);
+    });
+    $('#btnGenerate').click(function() {
+        var random = bingo.generateNextRandom().toString();
+        $('.bigNumberDisplay span').text(random);
+        $('td.cell' + random).addClass('selected');
+    });
+    window.onbeforeunload = function(e) {
+        e = e || window.event;
+        var returnString = 'Are you sure?';
+        if (e) {
+            e.returnValue = returnString;
+        }
+        return returnString;
+    };
+});
+</script>
+</head>
+    <body>
+        <div class="container">
+    <div>
+        <span>BingoDesk</span>
+    </div>
+    <div class="bigNumberDisplay">
+        <span>0</span>
+    </div>
+    <div>
+        <p>Hit Spacebar or click below to generate a number!</p>
+        <audio id="sound1" src="chewbacca.mp3" preload="auto"></audio>
+        <input id="btnGenerate" type="button" autofocus value="" onclick="document.getElementById('sound1').play();"/>
+    </div>
+
+    <br/>
+
+    <div class="numbersTable">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+
+    
+</div>
+</body>
+</html>
