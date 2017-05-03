@@ -79,7 +79,7 @@ $(function() {
     };
     $('td').each(function() {
         var concatClass = this.cellIndex + "" + this.parentNode.rowIndex;
-        var numberString = parseInt(concatClass, 10).toString();
+        var numberString = parseInt(concatClass, 10)+1//.toString(); does not need to be a string cant do calculations on a string
         $(this).addClass("cell" + numberString).text(numberString);
     });
     $('#btnGenerate').click(function() {
